@@ -48,7 +48,7 @@ test("form shows success message on submit with form details", () =>
     expect(successMessage).toHaveTextContent(zip);
 
 
-    fireEvent.click(screen.getByRole("button", { name: /checkout/i }));
+    //fireEvent.click(screen.getByRole("button", { name: /checkout/i }));
 
     expect(screen.getByTestId("successMessage")).toBeInTheDocument();
 
