@@ -6,50 +6,32 @@
  */
 
 //Imports
-import React from "react";
-import {fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import CheckoutForm from "./CheckoutForm";
-import userEvent from "@testing-library/user-event"
+import React from "react";
+import userEvent from "@testing-library/user-event";
 
 // Write up the two tests here and make sure they are testing what the title shows
 
-test("form header renders", () => 
+test("form header renders", () =>
 {
-    render(<CheckoutForm/>);
+  render(<CheckoutForm />);
 });
 
 test("form shows success message on submit with form details", () => 
 {
     //Arrange
-    const firstName = screen.getByLabelText(/first name:/i);
-    const lastName = screen.getByLabelText(/last name:/i);
-    const address = screen.getByLabelText(/address:/i);
-    const city = screen.getByLabelText(/city: /i);
-    const state = screen.getByLabelText(/state: /i);
-    const zip = screen.getByLabelText(/zip: /i);
+    render(<CheckoutForm />);
 
-    //Act:
-    userEvent.type(firstName, "Samuel");
-    userEvent.type(lastName, "Nichols");
-    userEvent.type(address, "125-171 S Front St");
-    userEvent.type(city, "Philadelphia");
-    userEvent.type(state, "PA");
-    userEvent.type(zip, "19106");
+    //Get the inputs and test with data
+    userEvent.type(screen.getByLabelText(/first name/i), "Samuel");
+    userEvent.type(screen.getByLabelText(/first name/i), "Nicholas");
+    userEvent.type(screen.getByLabelText(/address/i), "125-171 S Front St");
+    userEvent.type(screen.getByLabelText(/city/i), "Philadelphia");
+    userEvent.type(screen.getByLabelText(/state/i), "PA");
+    userEvent.type(screen.getByLabelText(/zip/i), "19106");
     userEvent.click(screen.getByRole("button"));
 
-    //Assert:
-    const successMessage = screen.getByTestId("successMessage");
-    
-    expect(successMessage).toHaveTextContent(firstName);
-    expect(successMessage).toHaveTextContent(lastName);
-    expect(successMessage).toHaveTextContent(address);
-    expect(successMessage).toHaveTextContent(city);
-    expect(successMessage).toHaveTextContent(state);
-    expect(successMessage).toHaveTextContent(zip);
-
-
-    //fireEvent.click(screen.getByRole("button", { name: /checkout/i }));
-
+    //Find the success message
     expect(screen.getByTestId("successMessage")).toBeInTheDocument();
-
 });
