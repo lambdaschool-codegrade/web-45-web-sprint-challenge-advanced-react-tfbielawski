@@ -21,16 +21,15 @@ test("form header renders", () =>
 test("form shows success message on submit with form details", () => 
 {
     //Arrange
-    // const firstName = screen.getByLabelText(/first name/i);
-    userEvent.type(screen.getByLabelText(/first name/i), "testFirst");
-    const lastName = screen.getByLabelText(/last name/i);
-    const address = screen.getByLabelText(/address/i);
-    const city = screen.getByLabelText(/city /i);
-    const state = screen.getByLabelText(/state /i);
-    const zip = screen.getByLabelText(/zip /i);
+    const firstName = screen.getByLabelText(/first name:/i);
+    const lastName = screen.getByLabelText(/last name:/i);
+    const address = screen.getByLabelText(/address:/i);
+    const city = screen.getByLabelText(/city: /i);
+    const state = screen.getByLabelText(/state: /i);
+    const zip = screen.getByLabelText(/zip: /i);
 
     //Act:
-   // userEvent.type(firstName, "Samuel");
+    userEvent.type(firstName, "Samuel");
     userEvent.type(lastName, "Nichols");
     userEvent.type(address, "125-171 S Front St");
     userEvent.type(city, "Philadelphia");
@@ -39,7 +38,7 @@ test("form shows success message on submit with form details", () =>
 
     //Assert:
     const successMessage = screen.getByTestId("success message");
-    //expect(successMessage).toHaveTextContent(firstName);
+    expect(successMessage).toHaveTextContent(firstName);
     expect(successMessage).toHaveTextContent(lastName);
     expect(successMessage).toHaveTextContent(address);
     expect(successMessage).toHaveTextContent(city);
