@@ -9,14 +9,12 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-export default class PlantList extends Component {
+export default class PlantList extends Component 
+{
   // add state with a property called "plants" - initialize as an empty array
 
   //Added plants array to state
-  state =
-  {
-    plants: []
-  }
+  state =  { plants: [] }
 
   // when the component mounts:
   //   - fetch data from the server endpoint - http://localhost:3333/plants
