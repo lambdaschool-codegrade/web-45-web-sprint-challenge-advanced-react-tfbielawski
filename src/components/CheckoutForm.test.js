@@ -7,7 +7,7 @@
 
 //Imports
 import React from "react";
-import { render, screen } from "@testing-library/react";
+import {fireEvent, render, screen } from "@testing-library/react";
 import CheckoutForm from "./CheckoutForm";
 import userEvent from "@testing-library/user-event"
 
@@ -38,14 +38,18 @@ test("form shows success message on submit with form details", () =>
     userEvent.click(screen.getByRole("button"));
 
     //Assert:
-    //const successMessage = screen.getByTestId("success message");
     const successMessage = screen.getByTestId("successMessage");
-    expect(screen.getByTestId("successMessage")).toBeInTheDocument();
+    
     expect(successMessage).toHaveTextContent(firstName);
     expect(successMessage).toHaveTextContent(lastName);
     expect(successMessage).toHaveTextContent(address);
     expect(successMessage).toHaveTextContent(city);
     expect(successMessage).toHaveTextContent(state);
     expect(successMessage).toHaveTextContent(zip);
+
+
+    fireEvent.click(screen.getByRole("button", { name: /checkout/i }));
+
+    expect(screen.getByTestId("successMessage")).toBeInTheDocument();
 
 });

@@ -27,7 +27,8 @@ const initialValue = {
 const CheckoutForm = (props) => 
 {
   //Added values, change and submit handlers, and init to initialValue
-  const [values, handleChanges, handleSubmit, showSuccessMessage, setShowSuccessMessage] = useForm(initialValue);
+  const [values, handleChanges, handleSubmit, showSuccessMessage] = useForm(initialValue);
+  console.log(">>>", showSuccessMessage);
   
 
   return (
