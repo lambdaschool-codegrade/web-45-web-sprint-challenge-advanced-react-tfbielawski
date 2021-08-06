@@ -37,7 +37,8 @@ test("form shows success message on submit with form details", () =>
     userEvent.type(zip, "19106");
 
     //Assert:
-    const successMessage = screen.getByTestId("success message");
+    //const successMessage = screen.getByTestId("success message");
+    const successMessage = screen.getByTestId(/successMessage/i);
     expect(successMessage).toHaveTextContent(firstName);
     expect(successMessage).toHaveTextContent(lastName);
     expect(successMessage).toHaveTextContent(address);
