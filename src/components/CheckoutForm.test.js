@@ -35,14 +35,17 @@ test("form shows success message on submit with form details", () =>
     userEvent.type(city, "Philadelphia");
     userEvent.type(state, "PA");
     userEvent.type(zip, "19106");
+    userEvent.click(screen.getByRole("button"));
 
     //Assert:
     //const successMessage = screen.getByTestId("success message");
     const successMessage = screen.getByTestId("successMessage");
+    expect(screen.getByTestId("successMessage")).toBeInTheDocument();
     expect(successMessage).toHaveTextContent(firstName);
     expect(successMessage).toHaveTextContent(lastName);
     expect(successMessage).toHaveTextContent(address);
     expect(successMessage).toHaveTextContent(city);
     expect(successMessage).toHaveTextContent(state);
     expect(successMessage).toHaveTextContent(zip);
+
 });
